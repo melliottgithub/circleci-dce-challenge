@@ -35,7 +35,7 @@ jobs:
       - store_test_results:
           path: ~/test-results
 
-  docker-image:
+  docker_image:
     docker:
       - image: cimg/base:2023.11
     steps:
@@ -52,7 +52,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
-      - docker-build:
+      - docker_image:
         requires:
           - build
 
