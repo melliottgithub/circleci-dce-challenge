@@ -35,6 +35,16 @@ jobs:
       - store_test_results:
           path: ~/test-results
 
+  docker-image:
+      docker:
+        - image: cimg/base:2023.11
+      steps:
+        - checkout
+        - run:
+            name: Build docker image
+            working_directory: app/
+            command: docker build -t dce-challenge .
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
@@ -42,3 +52,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
+      - docker-build:
+        requires:
+          - build
+
