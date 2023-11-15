@@ -33,7 +33,7 @@ jobs:
             mkdir -p /tmp/test-reports
             gotestsum --junitfile /tmp/test-reports/unit-tests.xml
       - store_test_results:
-          path: /tmp/test-reports
+          path: ~/test-results
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
