@@ -20,6 +20,7 @@ jobs:
             - go-mod-v4-{{ checksum "app/go.sum" }}
       - run:
           name: Install Dependencies
+          working_directory: app/
           command: go mod download
       - save_cache:
           key: go-mod-v4-{{ checksum "app/go.sum" }}
@@ -27,6 +28,7 @@ jobs:
             - "/go/pkg/mod"
       - run:
           name: Run tests
+          working_directory: app/
           command: |
             mkdir -p /tmp/test-reports
             gotestsum --junitfile /tmp/test-reports/unit-tests.xml
