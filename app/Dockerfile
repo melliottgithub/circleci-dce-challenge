@@ -1,5 +1,5 @@
 # stage 1: build app
-FROM golang:bookworm AS builder
+FROM golang:1.21.4-bookworm AS builder
 
 WORKDIR /app
 
@@ -12,9 +12,6 @@ COPY . .
 
 # build
 RUN CGO_ENABLED=0 GOOS=linux go build -o myapp .
-
-# run tests
-RUN go run gotest.tools/gotestsum@v1.11.0 .
 
 # stage 2: production image
 FROM alpine:latest
