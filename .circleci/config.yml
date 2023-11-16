@@ -48,6 +48,7 @@ jobs:
       - docker/build:
           image: dce-challenge
           tag: latest
+          path: app/
           use-buildkit: true
 
 
