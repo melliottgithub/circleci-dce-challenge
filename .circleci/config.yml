@@ -41,6 +41,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - setup_remote_docker
       - docker/build:
           image: dce-challenge
           tag: latest
