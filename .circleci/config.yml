@@ -48,6 +48,7 @@ jobs:
       - docker/build:
           image: dce-challenge
           tag: latest
+          use-buildkit: true
 
 
 # Invoke jobs via workflows
