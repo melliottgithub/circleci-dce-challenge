@@ -42,10 +42,10 @@ jobs:
     steps:
       - checkout
       - docker/build:
-        image: dce-challenge
-        tag: latest
-        path: app/
-        dockerfile: Dockerfile
+          image: dce-challenge
+          tag: latest
+          path: /app
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
