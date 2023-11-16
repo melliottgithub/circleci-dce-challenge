@@ -42,8 +42,10 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - run:
+          name: Change directory
+          command: cd app/
       - docker/build:
-          working_directory: app/
           image: dce-challenge
           tag: latest
 
