@@ -64,7 +64,7 @@ jobs:
 
       - aws-ecs/update_service:
           cluster: ${CLUSTER_NAME}
-          family: 'app'
+          task_definition: 'app:1'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
