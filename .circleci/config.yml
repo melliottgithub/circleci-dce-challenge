@@ -55,7 +55,7 @@ jobs:
       - aws-cli/setup
 
       - aws-ecr/tag_image:
-          repo: '${AWS_ECR_REPOSITORY_NAME}'
+          repo: ${AWS_ECR_REPOSITORY_NAME}
           source_tag: 'dce-challenge:latest'
 
       - aws-ecr/push_image:
