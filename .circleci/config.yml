@@ -65,6 +65,7 @@ jobs:
       - aws-ecs/update_service:
           cluster: ${CLUSTER_NAME}
           family: 'app'
+          service_name:  'circleci-dev-nlb'
           skip_task_definition_registration: true
 
 # Invoke jobs via workflows
