@@ -52,8 +52,8 @@ jobs:
           use-buildkit: true
 
       - aws-ecr/push_image:
-          region: << parameters.AWS_DEFAULT_REGION >>
-          repo: << parameters.AWS_ECR_REPO_URI >>
+          region: ${AWS_DEFAULT_REGION}
+          repo: ${AWS_ECR_REPO_URI}
           tag: latest
 
 # Invoke jobs via workflows
