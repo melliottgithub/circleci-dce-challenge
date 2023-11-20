@@ -57,7 +57,7 @@ jobs:
 
       - aws-ecr/tag_image:
           repo: ${AWS_ECR_REPO_URI}
-          source_tag: 'docker.io/library/dce-challenge:latest'
+          source_tag: 'dce-challenge:latest'
 
       - aws-ecr/push_image:
           region: ${AWS_DEFAULT_REGION}
