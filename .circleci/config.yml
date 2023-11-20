@@ -56,7 +56,7 @@ jobs:
           command: docker images
 
       - aws-ecr/tag_image:
-          repo: ${AWS_ECR_REPO_URI}
+          repo: '${AWS_ECR_REPO_URI}'
           source_tag: 'dce-challenge:latest'
 
       - aws-ecr/push_image:
