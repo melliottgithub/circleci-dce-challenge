@@ -51,8 +51,8 @@ jobs:
           tag: latest
           path: app/
           use-buildkit: true
-
-      - aws-cli/setup:
+          
+      - aws-cli/setup
 
       - run:
           name: list ecr images
