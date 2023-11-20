@@ -54,6 +54,10 @@ jobs:
 
       - aws-cli/setup
 
+      - run:
+          name: check current account id
+          command: aws sts get-caller-identity --query 'Account' --output text
+
       - aws-ecr/tag_image:
           repo: circleci-dev-backend
           source_tag: latest
