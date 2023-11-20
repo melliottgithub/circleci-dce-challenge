@@ -56,6 +56,10 @@ jobs:
           repo: ${AWS_ECR_REPO_URI}
           tag: latest
 
+      - aws-ecs/tag_image:
+          repo: ${AWS_ECR_REPO_URI}
+          source_tag: 'dce-challenge:lastest'
+
       - aws-ecs/update_service:
           cluster: ${CLUSTER_NAME}
           family: 'app'
