@@ -3,6 +3,8 @@
 version: 2.1
 orbs:
   docker: circleci/docker@2.4.0
+  aws-ecr: circleci/aws-ecr@9.0.1
+  aws-ecs: circleci/aws-ecs@4.0.0
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
@@ -49,6 +51,10 @@ jobs:
           path: app/
           use-buildkit: true
 
+      - aws-ecr/push_image:
+          region: << parameters.AWS_DEFAULT_REGION >>
+          repo: << parameters.AWS_ECR_REPO_URI >>
+          tag: latest
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
