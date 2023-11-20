@@ -47,7 +47,7 @@ jobs:
       - setup_remote_docker
       - docker/build:
           docker-context: app/
-          image: dce-challenge
+          image: circleci-dev-backend
           tag: latest
           path: app/
           use-buildkit: true
@@ -56,7 +56,7 @@ jobs:
 
       - aws-ecr/tag_image:
           repo: circleci-dev-backend
-          source_tag: 'dce-challenge:latest'
+          source_tag: latest
 
       - aws-ecr/push_image:
           region: ${AWS_DEFAULT_REGION}
