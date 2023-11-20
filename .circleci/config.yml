@@ -56,6 +56,10 @@ jobs:
           repo: ${AWS_ECR_REPO_URI}
           tag: latest
 
+      - run:
+          name: list images
+          command: docker images
+
       - aws-ecr/tag_image:
           repo: ${AWS_ECR_REPO_URI}
           source_tag: 'docker.io/library/dce-challenge:latest'
