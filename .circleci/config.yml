@@ -56,6 +56,11 @@ jobs:
           repo: ${AWS_ECR_REPO_URI}
           tag: latest
 
+      - aws-ecs/deploy_service_update:
+          cluster: ${CLUSTER_NAME}
+          requires:
+            - aws-ecr/build-and-push-image
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
