@@ -52,16 +52,16 @@ jobs:
           use-buildkit: true
 
       - run:
-          name: list images
-          command: docker images
+          name: list ecr images
+          command: aws ecr list-images --repository-name '${AWS_ECR_REPOSITORY_NAME}' --filter "tagStatus=TAGGED"
 
       - aws-ecr/tag_image:
-          repo: '${AWS_ECR_REPO_URI}'
+          repo: '${AWS_ECR_REPOSITORY_NAME}'
           source_tag: 'dce-challenge:latest'
 
       - aws-ecr/push_image:
           region: ${AWS_DEFAULT_REGION}
-          repo: ${AWS_ECR_REPO_URI}
+          repo: ${AWS_ECR_REPOSITORY_NAME}
           tag: latest
 
       - aws-ecs/update_service:
