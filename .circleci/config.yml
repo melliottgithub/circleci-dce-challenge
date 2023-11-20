@@ -56,7 +56,7 @@ jobs:
           repo: ${AWS_ECR_REPO_URI}
           tag: latest
 
-      - aws-ecs/tag_image:
+      - aws-ecr/tag_image:
           repo: ${AWS_ECR_REPO_URI}
           source_tag: 'dce-challenge:lastest'
 
