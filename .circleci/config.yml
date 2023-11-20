@@ -51,11 +51,6 @@ jobs:
           path: app/
           use-buildkit: true
 
-      - aws-ecr/push_image:
-          region: ${AWS_DEFAULT_REGION}
-          repo: ${AWS_ECR_REPO_URI}
-          tag: latest
-
       - run:
           name: list images
           command: docker images
@@ -63,6 +58,11 @@ jobs:
       - aws-ecr/tag_image:
           repo: ${AWS_ECR_REPO_URI}
           source_tag: 'docker.io/library/dce-challenge:latest'
+
+      - aws-ecr/push_image:
+          region: ${AWS_DEFAULT_REGION}
+          repo: ${AWS_ECR_REPO_URI}
+          tag: latest
 
       - aws-ecs/update_service:
           cluster: ${CLUSTER_NAME}
