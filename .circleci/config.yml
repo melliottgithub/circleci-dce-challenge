@@ -64,7 +64,8 @@ jobs:
 
       - aws-ecs/update_service:
           cluster: ${CLUSTER_NAME}
-          task_definition: 'app:1'
+          family: 'app'
+          skip_task_definition_registration: true
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
