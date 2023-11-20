@@ -47,7 +47,7 @@ jobs:
       - setup_remote_docker
       - docker/build:
           docker-context: app/
-          image: circleci-dev-backend
+          image: ${AWS_ECR_REPOSITORY_NAME}
           tag: latest
           path: app/
           use-buildkit: true
@@ -56,11 +56,11 @@ jobs:
 
       - run:
           name: docker login
-          command: aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin 037747827681.dkr.ecr.us-east-1.amazonaws.com
+          command: aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ECR_REPO_URI}
 
       - run:
           name: docker tag and push
-          command: docker tag circleci-dev-backend:latest 037747827681.dkr.ecr.us-east-1.amazonaws.com/circleci-dev-backend:latest && docker push 037747827681.dkr.ecr.us-east-1.amazonaws.com/circleci-dev-backend:latest
+          command: docker tag ${AWS_ECR_REPOSITORY_NAME}:latest ${AWS_ECR_REPO_URI}/${AWS_ECR_REPOSITORY_NAME}:latest && docker push ${AWS_ECR_REPO_URI}/${AWS_ECR_REPOSITORY_NAME}:latest
 
       - aws-ecs/update_service:
           cluster: ${CLUSTER_NAME}
