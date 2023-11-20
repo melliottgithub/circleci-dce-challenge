@@ -66,6 +66,8 @@ jobs:
           cluster: ${CLUSTER_NAME}
           family: 'app'
           skip_task_definition_registration: true
+    requires:
+      - build
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
