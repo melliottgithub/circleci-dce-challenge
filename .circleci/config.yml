@@ -3,6 +3,7 @@
 version: 2.1
 orbs:
   docker: circleci/docker@2.4.0
+  aws-cli: ccircleci/aws-cli@4.1.2
   aws-ecr: circleci/aws-ecr@9.0.1
   aws-ecs: circleci/aws-ecs@4.0.0
 # Define a job to be invoked later in a workflow.
@@ -50,6 +51,12 @@ jobs:
           tag: latest
           path: app/
           use-buildkit: true
+
+      - aws-cli/setup:
+
+      - run:
+          name: list ecr images
+          command: aws ecr list-images --repository-name '${AWS_ECR_REPOSITORY_NAME}' --filter "tagStatus=TAGGED"
 
       - aws-ecr/tag_image:
           repo: '${AWS_ECR_REPOSITORY_NAME}'
