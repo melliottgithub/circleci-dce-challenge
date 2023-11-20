@@ -55,17 +55,12 @@ jobs:
       - aws-cli/setup
 
       - run:
-          name: check current account id
-          command: aws sts get-caller-identity --query 'Account' --output text
+          name: docker login
+          command: aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin 037747827681.dkr.ecr.us-east-1.amazonaws.com
 
-      - aws-ecr/tag_image:
-          repo: circleci-dev-backend
-          source_tag: latest
-
-      - aws-ecr/push_image:
-          region: ${AWS_DEFAULT_REGION}
-          repo: circleci-dev-backend
-          tag: latest
+      - run:
+          name: docker tag and push
+          command: docker tag circleci-dev-backend:latest 037747827681.dkr.ecr.us-east-1.amazonaws.com/circleci-dev-backend:latest && docker push 037747827681.dkr.ecr.us-east-1.amazonaws.com/circleci-dev-backend:latest
 
       - aws-ecs/update_service:
           cluster: ${CLUSTER_NAME}
