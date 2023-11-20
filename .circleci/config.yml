@@ -59,8 +59,6 @@ jobs:
       - aws-ecs/update_service:
           cluster: ${CLUSTER_NAME}
           family: 'app'
-          requires:
-            - aws-ecr/build-and-push-image
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
