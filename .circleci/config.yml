@@ -56,7 +56,7 @@ jobs:
           repo: ${AWS_ECR_REPO_URI}
           tag: latest
 
-      - aws-ecs/deploy_service_update:
+      - aws-ecs/update_service:
           cluster: ${CLUSTER_NAME}
           requires:
             - aws-ecr/build-and-push-image
